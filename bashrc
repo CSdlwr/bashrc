@@ -90,7 +90,7 @@ function gcit {
 	return 100
     fi
 
-    local msg="$@"
+    local msg="$*"
     local local_branch_name=$(git symbolic-ref --short HEAD)
     git commit -m "$local_branch_name: $msg"
 }
