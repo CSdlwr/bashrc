@@ -19,6 +19,7 @@ alias gitaddmodify=gitaddmodify
 alias glog="git log --graph --format=\"%C(green)%h%Creset %C(yellow)%d%Creset - %an @ %C(blue)%ad%Creset --> %s\" --date=iso8601"
 alias gp=gitpush
 alias gpcurrent=git_push_current
+alias gau="git add -u"
 
 function qlg {
     if [[ $# != 1 ]]; then
