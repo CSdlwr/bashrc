@@ -111,7 +111,7 @@ function git_auto_commit {
 
 function git_auto_push {
     git_auto_commit "$*"
-    if [[ $? == 100 ]]; then
+    if [[ $? != 0 ]]; then
 	return 100
     fi
     gpcurrent
