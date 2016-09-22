@@ -20,6 +20,8 @@ alias glog="git log --graph --format=\"%C(green)%h%Creset %C(yellow)%d%Creset - 
 alias gp=gitpush
 alias gpcurrent=git_push_current
 alias gau="git add -u"
+alias gitautocommit=git_auto_commit
+alias gitautopush=git_auto_push
 
 function qlg {
     if [[ $# != 1 ]]; then
@@ -94,4 +96,23 @@ function gcit {
     local msg="$*"
     local local_branch_name=$(git symbolic-ref --short HEAD)
     git commit -m "$local_branch_name: $msg"
+}
+
+function git_auto_commit {
+    if [[ $# < 1 ]]; then
+	echo "commit message string is expected"
+	echo "Usage: git_auto_commit \"commit message\"; function return 100 now"
+	return 100
+    fi
+    gaa
+    local msg="$*"
+    gcit $msg
+}
+
+function git_auto_push {
+    git_auto_commit "$*"
+    if [[ $? == 100 ]]; then
+	return 100
+    fi
+    gpcurrent
 }
